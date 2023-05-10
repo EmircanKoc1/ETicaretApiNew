@@ -5,7 +5,7 @@
         public int ProductID { get; set; }
         public string Title { get; set; }
 
-        public int Price { get; set; }
+        public float Price { get; set; }
 
         public string PreDescription { get; set; }
 
