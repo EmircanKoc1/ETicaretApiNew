@@ -1,5 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
+
+
+builder.Services.AddCors(options =>options.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()));
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -16,6 +19,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+app.UseCors();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

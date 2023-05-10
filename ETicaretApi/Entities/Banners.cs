@@ -1,9 +1,10 @@
 ﻿namespace ETicaretApi.Entities
 {
-    public class BannerList
+    public class Banners
     {
-        public int BannerListID { get; set; }   
+        public int BannersID { get; set; }   
         public string ImgSrc { get; set; }
 
     }
+
 }
