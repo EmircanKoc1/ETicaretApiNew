@@ -44,15 +44,15 @@ namespace ETicaretApi.Controllers
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateProduct(Product product)
         {
-            Product getProduct = await  context.Products.FirstOrDefaultAsync(i=>i.ProductID == product.ProductID);
+            Product getProduct = await context.Products.FirstOrDefaultAsync(i => i.ProductID == product.ProductID);
 
-              getProduct.Title = product.Title;
-              getProduct.PreDescription = product.PreDescription; 
-              getProduct.Description = product.Description;
-              getProduct.BrandID = product.BrandID;
-              getProduct.CategoryID = product.CategoryID;
-              getProduct.ImgSrc = product.ImgSrc;
-           
+            getProduct.Title = product.Title;
+            getProduct.PreDescription = product.PreDescription;
+            getProduct.Description = product.Description;
+            getProduct.BrandID = product.BrandID;
+            getProduct.CategoryID = product.CategoryID;
+            getProduct.ImgSrc = product.ImgSrc;
+
             await context.SaveChangesAsync();
             return Ok(getProduct);
 
