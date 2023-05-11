@@ -7,7 +7,7 @@ namespace ETicaretApi.Controllers
 {
 
     [ApiController]
-    [Route("[action]")]
+    [Route("[controller]")]
     public class BrandController : Controller
     {
         ETicaretDbContext context = new();
@@ -39,12 +39,12 @@ namespace ETicaretApi.Controllers
         public async Task<IActionResult> UpdateBrand(Brand brand)
         {
             Brand getBrand = await context.Brands.FirstOrDefaultAsync(i => i.BrandID == brand.BrandID);
-            getBrand = new()
-            {
-                BrandID = brand.BrandID,
-                Name = brand.Name,
-                ImgSrc = brand.ImgSrc
-            };
+
+
+
+            getBrand.Name = brand.Name;
+            getBrand.ImgSrc = brand.ImgSrc;
+           
             await context.SaveChangesAsync();
             return Ok(getBrand);
 
