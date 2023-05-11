@@ -38,6 +38,7 @@ namespace ETicaretApi.Controllers
             return Ok(state);
 
         }
+
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteBanner(int id)
         {
