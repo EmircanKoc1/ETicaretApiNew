@@ -67,6 +67,29 @@ namespace ETicaretApi.Controllers
             return Ok(getProduct);
         }
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProductsByBrandID(int id)
+        {
+            var products = await context.Products.Where(p=>p.BrandID == id).ToListAsync();
+
+            return Ok(products);
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProductsByCategoryID(int id)
+        {
+            var products = await context.Products.Where(p => p.CategoryID == id).ToListAsync();
+
+            return Ok(products);
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProductsByBrandIDandCategoryID(int brandID,int categoryID)
+        {
+            var products = await context.Products.Where(p => p.BrandID == brandID && p.CategoryID == categoryID ).ToListAsync();
+
+            return Ok(products);
+        }
 
     }
 }
