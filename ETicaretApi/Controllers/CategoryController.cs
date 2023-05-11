@@ -49,6 +49,7 @@ namespace ETicaretApi.Controllers
             return Ok(getCategory);
         }
 
+        [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteCategoryByID(int id)
         {
            Category category = await context.Categories.FirstOrDefaultAsync(i => i.CategoryID == id);
