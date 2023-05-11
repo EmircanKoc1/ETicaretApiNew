@@ -1,12 +1,64 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ETicaretApi.Context;
+using ETicaretApi.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ETicaretApi.Controllers
 {
+    [ApiController]
+    [Route("[action]")]
     public class CategoryController : Controller
     {
-        public IActionResult Index()
+        ETicaretDbContext context = new();
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetCategoryByID(int id)
         {
-            return View();
+            Category getCategory = await context.Categories.FirstOrDefaultAsync(i => i.CategoryID == id);
+            return Ok(getCategory);
         }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetCategories()
+        {
+            var categories = await context.Categories.ToListAsync();
+            return Ok(categories);
+        }
+
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> AddCategory(Category category)
+        {   
+            await context.Categories.AddAsync(category);
+            await context.SaveChangesAsync();
+            return Ok(category);
+
+        }
+
+        [HttpPut("[action]")]
+        public async Task<IActionResult> UpdateCategory(Category category)
+        {
+            Category getCategory = await context.Categories.FirstOrDefaultAsync(i => i.CategoryID == category.CategoryID);
+            getCategory = new()
+            {
+                CategoryID = category.CategoryID,
+                ImgSrc = category.ImgSrc,
+                Name = category.Name 
+            };
+            await context.SaveChangesAsync();
+            return Ok(getCategory);
+        }
+
+        public async Task<IActionResult> DeleteCategoryByID(int id)
+        {
+           Category category = await context.Categories.FirstOrDefaultAsync(i => i.CategoryID == id);
+            context.Remove(category);
+            await context.SaveChangesAsync();
+
+            return Ok(category);
+        }
+
+
+
     }
 }
