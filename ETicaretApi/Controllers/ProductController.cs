@@ -95,6 +95,7 @@ namespace ETicaretApi.Controllers
         public async Task<IActionResult> GetProductsFirst12()
         {
             var products = await context.Products.Take(12).ToListAsync();
+           
 
             return Ok(products);
         }
