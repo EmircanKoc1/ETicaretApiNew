@@ -1,9 +1,13 @@
+using ETicaretApi.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
 
 builder.Services.AddCors(options =>options.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()));
 // Add services to the container.
+
+builder.Services.AddDbContext<ETicaretDbContext>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
