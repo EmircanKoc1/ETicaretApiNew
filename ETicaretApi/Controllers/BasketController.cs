@@ -13,11 +13,27 @@ namespace ETicaretApi.Controllers
     {
         ETicaretDbContext context = new();
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetBasketTotal(int userId)
+        {
+            var basket = await context.Baskets.FirstOrDefaultAsync(i => i.UserID == userId);
+            var basketProducts = await context.BasketProducts.Where(i => i.BasketID == basket.BasketID).ToListAsync();
+            float totalPrice = 0;
+
+            foreach (var basketProduct in basketProducts)
+            {
+                totalPrice += basketProduct.Price;
+            }
+
+            return Ok(totalPrice);
+        }
+
+
 
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBaskets()
         {
-            var basketList = await context.Baskets.ToListAsync(); ;
+            var basketList = await context.Baskets.ToListAsync(); 
 
             return Ok(basketList);
         }
