@@ -15,6 +15,8 @@
 
         public string PhoneNumber { get; set; }
 
+        public string ImgSrc { get; set; }
+
 
 
     }

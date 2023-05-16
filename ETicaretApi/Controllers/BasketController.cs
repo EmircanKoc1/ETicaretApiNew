@@ -13,6 +13,15 @@ namespace ETicaretApi.Controllers
     {
         ETicaretDbContext context = new();
 
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetBaskets()
+        {
+            var basketList = await context.Baskets.ToListAsync(); ;
+
+            return Ok(basketList);
+        }
+
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBasketByUserId(int id)
         {
@@ -29,6 +38,16 @@ namespace ETicaretApi.Controllers
 
 
             return Ok(basket);
+        }
+
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetBasketItems(int userId)
+        {
+            var basket = await context.Baskets.FirstOrDefaultAsync(i => i.UserID == userId);
+            var basketItems = await context.BasketProducts.Where(i => i.BasketID == basket.BasketID).ToListAsync();
+
+            return Ok(basketItems);
         }
 
         [HttpPost("[action]")]
