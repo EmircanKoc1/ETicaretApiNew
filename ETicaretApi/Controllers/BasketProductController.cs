@@ -26,9 +26,9 @@ namespace ETicaretApi.Controllers
             var basket = await context.Baskets.FirstOrDefaultAsync(i => i.UserID == userId);
             var product = await context.Products.FirstOrDefaultAsync(i=>i.ProductID == productId);
             BasketProduct basketProduct = new()
-            {
+            {  
                 BasketID = basket.BasketID,
-                ProductID = productId,
+                ProductID = product.ProductID,
                 Quantity = 1,
                 Price = product.Price 
             };
@@ -42,7 +42,7 @@ namespace ETicaretApi.Controllers
         public async Task<IActionResult> DeleteProductFromBasket(int userId, int productId)
         {
             var basket = await context.Baskets.FirstOrDefaultAsync(i => i.UserID == userId);
-            var productBasketItem = await context.BasketProducts.FirstOrDefaultAsync(i=>i.BasketProductID == productId);
+            var productBasketItem = await context.BasketProducts.FirstOrDefaultAsync(i=>i.BasketID == basket.BasketID && i.ProductID == productId);
 
             context.BasketProducts.Remove(productBasketItem);
             await context.SaveChangesAsync();
