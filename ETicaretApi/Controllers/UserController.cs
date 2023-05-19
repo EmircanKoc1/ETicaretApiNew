@@ -1,18 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ETicaretApi.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ETicaretApi.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class UserController : Controller
     {
 
-        [HttpGet("[action]")]
-        public async  Task<IActionResult> GetUsers()
+        [HttpPost("[action]")]
+        public async Task<IActionResult> AddUser(User user)
         {
 
+            var userx = user;
 
 
-
-            return Ok();
+            return Ok(userx);
         }
 
 

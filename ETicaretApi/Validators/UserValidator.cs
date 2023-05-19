@@ -8,8 +8,11 @@ namespace ETicaretApi.Validators
         public UserValidator()
         {
 
-            RuleFor(x => x.Name).NotNull().WithMessage("Email Boş Olamaz");
-
+            RuleFor(x => x.Name)
+                .NotNull()
+                .WithMessage("İsim Boş Olamaz")
+                .MinimumLength(3)
+                .WithMessage("isim 3 Karakterden fazla olmalı");
 
 
         }
