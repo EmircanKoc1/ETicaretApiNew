@@ -20,6 +20,14 @@ namespace ETicaretApi.Controllers
             return Ok(orders);
         }
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetOrderDetailsByOrderId(int orderId)
+        {
+            var orderDetails = await context.OrderDetails.Where(i=>i.OrderID==orderId).ToListAsync();
+
+            return Ok(orderDetails);
+        }
+
         [HttpPost("[action]")]
         public async Task<IActionResult> AddOrder(Order order)
         {
@@ -56,7 +64,15 @@ namespace ETicaretApi.Controllers
             return Ok(order);
         }
 
+        [HttpDelete("[action]")]
+        public async Task<IActionResult> DeleteOrderById(int id)
+        {
+            var order = await context.Orders.FindAsync(id);
+            context.Remove(order);
+            await context.SaveChangesAsync();
 
+            return Ok(order);
+        }
 
     }
 }
