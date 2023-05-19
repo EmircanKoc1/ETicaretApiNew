@@ -14,10 +14,16 @@ builder.Services.AddCors(options =>options.AddDefaultPolicy(policy => policy.All
 
 builder.Services.AddDbContext<ETicaretDbContext>();
 
-builder.Services.AddControllers().AddFluentValidation(x => {
+
+
+builder.Services.AddControllers();
+
+builder.Services.AddControllers().AddFluentValidation(x =>
+{
 
     x.ImplicitlyValidateChildProperties = true;
     x.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+
 
 });
 
