@@ -11,11 +11,11 @@ namespace ETicaretApi.Validators
             RuleFor(x => x.Name)
                 .NotNull()
                 .NotEmpty()
-                .WithMessage("İsim Boş Olamaz")
+                .WithMessage("Lütfen ad alanını boş geçmeyin")
                 .MinimumLength(3)
-                .WithMessage("isim 3 Karakterden fazla olmalı")
+                .WithMessage("Adınız 3 Karakterden fazla olmalı")
                 .MaximumLength(16)
-                .WithMessage("İsim en fazla 16 karakter olmalı");
+                .WithMessage("Adınız en fazla 16 karakter olmalı");
             RuleFor(x => x.SurName)
                 .NotNull()
                 .NotEmpty()
