@@ -42,25 +42,32 @@ namespace ETicaretApi.Validators
                 .WithMessage("Kullanıcı adınız 3 karakterden fazla olmalıdır")
                 .MaximumLength(16)
                 .WithMessage("Kullanıcı adınız 50 karakterden fazla olmalıdır");
-            RuleFor(x => x.Adress)
-                .NotNull()
-                .NotEmpty()
-                .WithMessage("Adres alanını boş bırakmayınız")
-                .MinimumLength(3)
-                .WithMessage("Adres bilginiz 3 karakterden fazla olmalıdır")
-                .MaximumLength(200)
-                .WithMessage("Adres bilginiz 200 karakterden fazla olamaz");
+            //RuleFor(x => x.Adress)
+            //    .NotNull()
+            //    .NotEmpty()
+            //    .WithMessage("Adres alanını boş bırakmayınız")
+            //    .MinimumLength(3)
+            //    .WithMessage("Adres bilginiz 3 karakterden fazla olmalıdır")
+            //    .MaximumLength(200)
+            //    .WithMessage("Adres bilginiz 200 karakterden fazla olamaz");
             RuleFor(x => x.PhoneNumber)
                 .NotNull()
                 .NotEmpty()
                 .WithMessage("Lütfen telefon numarası alanını boş bırakmayın")
                 .Length(11, 11)
                 .WithMessage("Lütfen geçerli bir telefon numarası girin");
-            RuleFor(x => x.ImgSrc)
+            //RuleFor(x => x.ImgSrc)
+            //    .NotEmpty()
+            //    .NotNull()
+            //    .WithMessage("Lütfen resim alanını boş bırakmayın");
+            RuleFor(x => x.Password)
                 .NotEmpty()
                 .NotNull()
-                .WithMessage("Lütfen resim alanını boş bırakmayın");
-
+                .WithMessage("Şifre alanı boş geçilemez")
+                .MinimumLength(6)
+                .WithMessage("Şifreniz 6 veya 6 karakterden fazla olmalı")
+                .MaximumLength(16)
+                .WithMessage("Şifreniz 16 karakter veya 16 karakterden kısa olmalıdır");
 
 
         }

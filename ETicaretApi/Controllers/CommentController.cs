@@ -21,7 +21,7 @@ namespace ETicaretApi.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetCommens()
+        public async Task<IActionResult> GetComments()
         {
             var comments = await context.Comments.ToListAsync();
             return Ok(comments);
