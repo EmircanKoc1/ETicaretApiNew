@@ -29,18 +29,27 @@ namespace ETicaretApi.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddOrder(Order order)
+        public async Task<IActionResult> AddOrder(int id)
         {
-            var userBasket = await context.Baskets.FirstOrDefaultAsync(i => i.UserID == order.UserID);
+            var userBasket = await context.Baskets.FirstOrDefaultAsync(i => i.UserID == id);
             var basketProducts = await context.BasketProducts.Where(i => i.BasketID == userBasket.BasketID).ToListAsync();
 
             float totalPrice = 0;
+           
 
             foreach (var basketProduct in basketProducts)
             {
                 totalPrice += basketProduct.Price;
             }
-            order.TotalPrice = totalPrice;
+
+            Order order = new()
+            {
+                UserID = id,
+                OrderDate = DateTime.UtcNow,
+                TotalPrice = totalPrice,
+                OrderStatus = true,
+            };
+
 
             await context.Orders.AddAsync(order);
             await context.SaveChangesAsync();
