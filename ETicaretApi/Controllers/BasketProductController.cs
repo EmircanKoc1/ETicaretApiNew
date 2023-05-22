@@ -17,9 +17,19 @@ namespace ETicaretApi.Controllers
         {
             var basket = await context.Baskets.FirstOrDefaultAsync(i=>i.UserID == userId);
             var basketItems = await context.BasketProducts.Where(i=>i.BasketID == basket.BasketID).ToListAsync();
-           
-            return Ok(basketItems);
+            var products = new List<Product>();
+
+            foreach (var item in basketItems)
+            {
+                var product = await context.Products.FirstOrDefaultAsync(i => i.ProductID == item.ProductID);
+             
+                products.Add(product);
+            }
+
+
+            return Ok(products);
         }
+
         [HttpPost("[action]")]
         public async Task<IActionResult> AddProductFromBasket(int userId , int productId)
         {
