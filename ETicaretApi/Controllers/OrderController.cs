@@ -47,7 +47,7 @@ namespace ETicaretApi.Controllers
                 UserID = id,
                 OrderDate = DateTime.UtcNow,
                 TotalPrice = totalPrice,
-                OrderStatus = true,
+                OrderStatus = false,
             };
 
 
