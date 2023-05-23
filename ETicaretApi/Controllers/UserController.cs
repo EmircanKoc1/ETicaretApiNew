@@ -43,6 +43,30 @@ namespace ETicaretApi.Controllers
             return Ok(users);
         }
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetUserById(int id)
+        {
+            var user = await context.Users.FirstOrDefaultAsync(i => i.UserID == id);
+           
+
+            return Ok(user);
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetUserByIdCommentandOrderCount(int id)
+        {
+            var userCommentCount = context.Comments.Count(x => x.UserID == id);
+            var userOrderCount = context.Orders.Count(x => x.UserID == id);
+            userCountData data = new()
+            {
+                CommentCount = userCommentCount,
+                OrderCount = userOrderCount
+            };
+            return Ok(data);
+
+        }
+
+
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteUserById(int id)
         {
@@ -71,6 +95,13 @@ namespace ETicaretApi.Controllers
             return Ok(getUser);
         }
 
+
+    }
+
+    public class userCountData
+    {
+        public int CommentCount { get; set; }
+        public int OrderCount { get; set; }
 
     }
 }
