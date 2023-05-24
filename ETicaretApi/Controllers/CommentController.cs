@@ -15,9 +15,17 @@ namespace ETicaretApi.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> GetCommentByID(int id)
         {
-            Comment commet = await context.Comments.FirstOrDefaultAsync(i => i.CommentID == id);
+            Comment comment = await context.Comments.FirstOrDefaultAsync(i => i.CommentID == id);
 
-            return Ok(commet);
+            return Ok(comment);
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetCommentsByProductID(int id)
+        {
+            var comments = await context.Comments.Where(i => i.ProductID == id).ToListAsync();
+
+            return Ok(comments);
         }
 
         [HttpGet("[action]")]

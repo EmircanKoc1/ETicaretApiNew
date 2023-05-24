@@ -28,6 +28,14 @@ namespace ETicaretApi.Controllers
             return Ok(orderDetails);
         }
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetOrderByOrderId(int orderId)
+        {
+            var order = await context.Orders.FirstOrDefaultAsync(i => i.OrderID == orderId);
+
+            return Ok(order);
+        }
+
         [HttpPost("[action]")]
         public async Task<IActionResult> AddOrder(int id)
         {
