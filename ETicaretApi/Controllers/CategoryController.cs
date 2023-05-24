@@ -9,8 +9,13 @@ namespace ETicaretApi.Controllers
     [Route("[controller]")]
     public class CategoryController : Controller
     {
+        //Controller yazıyoruz ve bu bizin ilgili istekleri yapacağımız api oluyor.
+        //Aşağıdaki gibi tanımlıyoruz.
+
+        //Burada veritabanına sorgu yapmak için bir context nesnesi oluşturuyoruz.
         ETicaretDbContext context = new();
 
+        //Burada api ye get isteğinde bulunup categoryi id ye göre getiriyoruz
         [HttpGet("[action]")]
         public async Task<IActionResult> GetCategoryByID(int id)
         {
@@ -18,6 +23,7 @@ namespace ETicaretApi.Controllers
             return Ok(getCategory);
         }
 
+        //Burada api ye get isteğinde bulunup categoryleri listeliyoruz
         [HttpGet("[action]")]
         public async Task<IActionResult> GetCategories()
         {
@@ -25,7 +31,7 @@ namespace ETicaretApi.Controllers
             return Ok(categories);
         }
 
-
+        //Burada api ye post isteğinde bulunup category ekliyoruz
         [HttpPost("[action]")]
         public async Task<IActionResult> AddCategory(Category category)
         {   
@@ -35,6 +41,7 @@ namespace ETicaretApi.Controllers
 
         }
 
+        //Burada api ye put isteğinde bulunup categoryi güncelliyoruz
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateCategory(Category category)
         {
@@ -48,6 +55,7 @@ namespace ETicaretApi.Controllers
             return Ok(getCategory);
         }
 
+        //Burada api ye delete isteğinde bulunup categoryi id ye göre siliyoruz
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteCategoryByID(int id)
         {

@@ -10,8 +10,13 @@ namespace ETicaretApi.Controllers
     [Route("[controller]")]
     public class CommentController : Controller
     {
+        //Controller yazıyoruz ve bu bizin ilgili istekleri yapacağımız api oluyor.
+        //Aşağıdaki gibi tanımlıyoruz.
+
+        //Burada veritabanına sorgu yapmak için bir context nesnesi oluşturuyoruz.
         ETicaretDbContext context = new();
 
+        //Burada api ye get isteğinde bulunup commenti id ye göre getiriyoruz
         [HttpGet("[action]")]
         public async Task<IActionResult> GetCommentByID(int id)
         {
@@ -20,6 +25,7 @@ namespace ETicaretApi.Controllers
             return Ok(comment);
         }
 
+        //Burada api ye get isteğinde bulunup commenti product id ye göre getiriyoruz
         [HttpGet("[action]")]
         public async Task<IActionResult> GetCommentsByProductID(int id)
         {
@@ -28,6 +34,7 @@ namespace ETicaretApi.Controllers
             return Ok(comments);
         }
 
+        //Burada api ye get isteğinde bulunup commenti product id ye göre getiriyoruz
         [HttpGet("[action]")]
         public async Task<IActionResult> GetComments()
         {
@@ -35,6 +42,7 @@ namespace ETicaretApi.Controllers
             return Ok(comments);
         }
 
+        //Burada api ye post isteğinde bulunup comment ekliyoruz
         [HttpPost("[action]")]
         public async Task<IActionResult> AddComment(Comment comment)
         {
@@ -44,6 +52,7 @@ namespace ETicaretApi.Controllers
             return Ok();
         }
 
+        //Burada api ye put isteğinde bulunup commenti güncelliyoruz
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateComment(Comment comment)
         {
@@ -59,6 +68,7 @@ namespace ETicaretApi.Controllers
             return Ok(getComment);
         }
 
+        //Burada api ye post isteğinde bulunup commenti siliyoruz
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteCommentByID(int id)
         {

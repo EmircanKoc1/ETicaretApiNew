@@ -6,13 +6,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ETicaretApi.Controllers
 {
+    //Controller yazıyoruz ve bu bizin ilgili istekleri yapacağımız api oluyor.
+    //Aşağıdaki gibi tanımlıyoruz.
 
     [ApiController]
     [Route("[controller]")]
     public class SearchController : Controller
     {
+        //Burada Search isminde bir api yazdım Basit Arama işlemleri için 
+        //gönderilen veriyi alarak uygun ürünleri listeleyecek
+
+        //Burada veritabanına sorgu yapmak için bir context nesnesi oluşturuyoruz.
         ETicaretDbContext context = new();
 
+        //Burada api ye get isteğinde bulunup worde geçen kelimeye göre ürün listeliyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> Search(string words)
         {

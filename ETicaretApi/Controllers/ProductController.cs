@@ -5,15 +5,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ETicaretApi.Controllers
 {
+    //Controller yazıyoruz ve bu bizin ilgili istekleri yapacağımız api oluyor.
+    //Aşağıdaki gibi tanımlıyoruz.
 
     [ApiController]
     [Route("[controller]")]
     public class ProductController : Controller
     {
-
+        //Burada veritabanına sorgu yapmak için bir context nesnesi oluşturuyoruz.
         ETicaretDbContext context = new();
 
 
+        //Burada api ye get isteğinde bulunup product ı  product id ye göre getiriyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductByID(int id)
         {
@@ -23,6 +26,7 @@ namespace ETicaretApi.Controllers
 
         }
 
+        //Burada api ye get isteğinde bulunup productları listeliyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProducts()
         {
@@ -31,6 +35,7 @@ namespace ETicaretApi.Controllers
             return Ok(products);
         }
 
+        //Burada api ye post isteğinde bulunup product ekliyoruz.
         [HttpPost("[action]")]
         public async Task<IActionResult> AddProduct(Product product)
         {
@@ -40,7 +45,7 @@ namespace ETicaretApi.Controllers
             return Ok(product);
 
         }
-
+        //Burada api ye put isteğinde bulunup product ı güncelliyoruz.
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateProduct(Product product)
         {
@@ -58,6 +63,7 @@ namespace ETicaretApi.Controllers
 
         }
 
+        //Burada api ye delete isteğinde bulunup productı id ye göre siliyoruz
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteProductById(int id)
         {
@@ -66,7 +72,7 @@ namespace ETicaretApi.Controllers
             context.SaveChanges();
             return Ok(getProduct);
         }
-
+        //Burada api ye get isteğinde bulunup productları brand id  ye göre listeliyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductsByBrandID(int id)
         {
@@ -74,7 +80,7 @@ namespace ETicaretApi.Controllers
 
             return Ok(products);
         }
-
+        //Burada api ye get isteğinde bulunup productları  category id ye göre listeliyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductsByCategoryID(int id)
         {
@@ -83,6 +89,7 @@ namespace ETicaretApi.Controllers
             return Ok(products);
         }
 
+        //Burada api ye get isteğinde bulunup productları category ve brand id ye göre listeliyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductsByBrandIDandCategoryID(int brandID,int categoryID)
         {
@@ -91,6 +98,7 @@ namespace ETicaretApi.Controllers
             return Ok(products);
         }
 
+        //Burada api ye get isteğinde bulunup ilk 12 productları listeliyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductsFirst12()
         {

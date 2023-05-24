@@ -11,8 +11,14 @@ namespace ETicaretApi.Controllers
     [Route("[controller]")]
     public class BasketController : Controller
     {
+        //Controller yazıyoruz ve bu bizin ilgili istekleri yapacağımız api oluyor.
+        //Aşağıdaki gibi tanımlıyoruz.
+
+        //Burada veritabanına sorgu yapmak için bir context nesnesi oluşturuyoruz.
         ETicaretDbContext context = new();
 
+
+        //Burada api ye get isteğinde bulunup sepet toplam tutarı alıyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBasketTotal(int userId)
         {
@@ -29,7 +35,7 @@ namespace ETicaretApi.Controllers
         }
 
 
-
+        //Burada api ye get isteğinde bulunup sepetleri listeliyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBaskets()
         {
@@ -38,6 +44,7 @@ namespace ETicaretApi.Controllers
             return Ok(basketList);
         }
 
+        //Burada api ye get isteğinde bulunup user a ait sepeti alıyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBasketByUserId(int id)
         {
@@ -47,6 +54,7 @@ namespace ETicaretApi.Controllers
             return Ok(basket);
         }
 
+        //Burada api ye get isteğinde bulunup sepet ıd sine göre sepeti alıyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBasketByBasketId(int id)
         {
@@ -56,7 +64,7 @@ namespace ETicaretApi.Controllers
             return Ok(basket);
         }
 
-
+        //Burada api ye get isteğinde bulunup sepettekileri listeliyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBasketItems(int userId)
         {
@@ -65,7 +73,7 @@ namespace ETicaretApi.Controllers
 
             return Ok(basketItems);
         }
-
+        //Burada api ye post isteğinde bulunup sepet oluşturuyoruz.
         [HttpPost("[action]")]
         public async Task<IActionResult> CreateBasket(Basket basket)
         {
@@ -75,7 +83,7 @@ namespace ETicaretApi.Controllers
             return Ok(basket);
         }
 
-
+        //Burada api ye delete isteğinde bulunup sepet ıd sine göre sepeti siliyoruz
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteBasketByBasketID(int id )
         {
@@ -84,7 +92,7 @@ namespace ETicaretApi.Controllers
             await context.SaveChangesAsync();
             return Ok(getBasket);
         }
-
+        //Burada api ye delete isteğinde bulunup user ıd sine göre sepeti siliyoruz
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteBasketByUserID(int id)
         {

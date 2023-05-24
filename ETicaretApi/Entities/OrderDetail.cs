@@ -1,5 +1,6 @@
 ﻿namespace ETicaretApi.Entities
-{
+{   //Veritabanında karşılık gelmesi için Classı Entity olarak kullanacağız
+    //İlgili class Veritabanında tabloya karşılık gelecek.
     public class OrderDetail
     {
         public int OrderDetailID { get; set; }

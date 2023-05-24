@@ -4,14 +4,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ETicaretApi.Controllers
-{
+{  //Controller yazıyoruz ve bu bizin ilgili istekleri yapacağımız api oluyor.
+    //Aşağıdaki gibi tanımlıyoruz.
 
     [ApiController]
     [Route("[controller]")]
     public class BannerController : Controller
     {
+        //Burada veritabanına sorgu yapmak için bir context nesnesi oluşturuyoruz.
         ETicaretDbContext context = new();
 
+        //Burada api ye get isteğinde bulunup banner i alıyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBanner()
         {
@@ -20,6 +23,7 @@ namespace ETicaretApi.Controllers
 
         }
 
+        //Burada api ye post isteğinde bulunup banner i ekliyoruz.
         [HttpPost("[action]")]
         public async Task<IActionResult> AddBanner(Banner banner)
         {
@@ -29,6 +33,7 @@ namespace ETicaretApi.Controllers
 
         }
 
+        //Burada api ye put isteğinde bulunup banner i güncelliyoruz.
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateBanner(Banner banner)
         {
@@ -39,6 +44,7 @@ namespace ETicaretApi.Controllers
 
         }
 
+        //Burada api ye delete isteğinde bulunup banner i siliyoruz.
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteBanner(int id)
         {

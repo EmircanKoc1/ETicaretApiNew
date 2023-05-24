@@ -5,17 +5,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ETicaretApi.Controllers
-{
+{ //Controller yazıyoruz ve bu bizin ilgili istekleri yapacağımız api oluyor.
+    //Aşağıdaki gibi tanımlıyoruz.
+
     [ApiController]
     [Route("[controller]")]
     public class UserController : Controller
     {
+        //Burada veritabanına sorgu yapmak için bir context nesnesi oluşturuyoruz.
         ETicaretDbContext context = new();
 
+        //Burada api ye Post isteğinde bulunup user ekliyoruz
         [HttpPost("[action]")]
         public async Task<IActionResult> AddUser(User user)
         {
-          
+          //Burada gerekli validasyonları yapıyoruz
             var validator = new UserValidator();
             var validationResult = validator.Validate(user);
 
@@ -32,9 +36,10 @@ namespace ETicaretApi.Controllers
             {
                 return Ok(validationResult);
             }
-            return Ok("ddddddddddddddddddd");
+            return Ok("Başarılı");
         }
 
+        //Burada api ye get isteğinde bulunup userları listeliyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetUsers()
         {
@@ -43,6 +48,7 @@ namespace ETicaretApi.Controllers
             return Ok(users);
         }
 
+        //Burada api ye get isteğinde bulunup user ı user id ye göre getiriyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetUserById(int id)
         {
@@ -52,6 +58,7 @@ namespace ETicaretApi.Controllers
             return Ok(user);
         }
 
+        //Burada api ye get isteğinde bulunupuser id ye göre yorumları ve sipariş sayılarını getiriryoruz .
         [HttpGet("[action]")]
         public async Task<IActionResult> GetUserByIdCommentandOrderCount(int id)
         {
@@ -66,7 +73,7 @@ namespace ETicaretApi.Controllers
 
         }
 
-
+        //Burada api ye delete isteğinde bulunup user i user id ye göre siliyoruz.
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteUserById(int id)
         {
@@ -77,6 +84,7 @@ namespace ETicaretApi.Controllers
             return Ok(user);
 
         }
+        //Burada api ye put isteğinde bulunup product ı güncelliyoruz.
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateUser(User user)
         {
@@ -97,7 +105,7 @@ namespace ETicaretApi.Controllers
 
 
     }
-
+    //Burada model tanımladık count için 
     public class userCountData
     {
         public int CommentCount { get; set; }

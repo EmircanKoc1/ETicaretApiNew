@@ -8,10 +8,13 @@ namespace ETicaretApi.Controllers
     [ApiController]
     [Route("[controller]")]
     public class OrderController : Controller
-    {
+    { //Controller yazıyoruz ve bu bizin ilgili istekleri yapacağımız api oluyor.
+      //Aşağıdaki gibi tanımlıyoruz.
+
+        //Burada veritabanına sorgu yapmak için bir context nesnesi oluşturuyoruz.
         ETicaretDbContext context = new();
 
-
+        //Burada api ye post isteğinde bulunup order i user id ye göre getiriyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetOrdersByUserId(int userId)
         {
@@ -20,6 +23,8 @@ namespace ETicaretApi.Controllers
             return Ok(orders);
         }
 
+
+        //Burada api ye get isteğinde bulunup orderdetailsi order id ye göre getiriyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetOrderDetailsByOrderId(int orderId)
         {
@@ -28,6 +33,8 @@ namespace ETicaretApi.Controllers
             return Ok(orderDetails);
         }
 
+
+        //Burada api ye get isteğinde bulunup order i order id ye göre getiriyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetOrderByOrderId(int orderId)
         {
@@ -36,6 +43,8 @@ namespace ETicaretApi.Controllers
             return Ok(order);
         }
 
+
+        //Burada api ye post isteğinde bulunup order i user id ye göre getiriyoruz.
         [HttpPost("[action]")]
         public async Task<IActionResult> AddOrder(int id)
         {
@@ -81,6 +90,8 @@ namespace ETicaretApi.Controllers
             return Ok(order);
         }
 
+
+        //Burada api ye delete isteğinde bulunup order i order id ye göre  siliyoruz
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteOrderById(int id)
         {

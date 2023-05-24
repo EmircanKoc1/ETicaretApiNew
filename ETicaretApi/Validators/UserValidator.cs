@@ -2,7 +2,9 @@
 using FluentValidation;
 
 namespace ETicaretApi.Validators
-{
+{    //Fluent Validation Kutuphanesi ile User kullanarak yapılan işlemlerde belirli kontroller sağladık.
+    //Çalışması için AbstractValidator a ilgili Sınıf verilerek kalıtım sağlanıyor.
+    //Kontrollerde aşağıdaki gibi.
     public class UserValidator : AbstractValidator<User>
     {
         public UserValidator()

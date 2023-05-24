@@ -10,8 +10,13 @@ namespace ETicaretApi.Controllers
     [Route("[controller]")]
     public class BasketProductController : Controller
     {
+        //Controller yazıyoruz ve bu bizin ilgili istekleri yapacağımız api oluyor.
+        //Aşağıdaki gibi tanımlıyoruz.
+
+        //Burada veritabanına sorgu yapmak için bir context nesnesi oluşturuyoruz.
         ETicaretDbContext context = new();
 
+        //Burada api ye get isteğinde bulunup sepetteki ürünleri listeliyoruz
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBasketProducts(int userId)
         {
@@ -29,7 +34,7 @@ namespace ETicaretApi.Controllers
 
             return Ok(products);
         }
-
+        //Burada api ye post isteğinde bulunup sepete ürün ekliyoruz.
         [HttpPost("[action]")]
         public async Task<IActionResult> AddProductFromBasket(int userId , int productId)
         {
@@ -48,6 +53,7 @@ namespace ETicaretApi.Controllers
             return Ok(basketProduct);
         }
 
+        //Burada api ye delete isteğinde bulunup sepetteki ürünü siliyoruz
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteProductFromBasket(int userId, int productId)
         {

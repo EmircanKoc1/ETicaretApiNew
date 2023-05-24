@@ -10,8 +10,13 @@ namespace ETicaretApi.Controllers
     [Route("[controller]")]
     public class BrandController : Controller
     {
+        //Controller yazıyoruz ve bu bizin ilgili istekleri yapacağımız api oluyor.
+        //Aşağıdaki gibi tanımlıyoruz.
+
+        //Burada veritabanına sorgu yapmak için bir context nesnesi oluşturuyoruz.
         ETicaretDbContext context = new();
 
+        //Burada api ye get isteğinde bulunup marka yı id ye göre getiriyoruz
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBrandByID(int id)
         {
@@ -19,6 +24,7 @@ namespace ETicaretApi.Controllers
             return Ok(getBrand);
         }
 
+        //Burada api ye get isteğinde bulunup markaları listeliyoruz
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBrands()
         {
@@ -26,6 +32,7 @@ namespace ETicaretApi.Controllers
             return Ok(getBrands);
         }
 
+        //Burada api ye post isteğinde bulunup marka ekliyoruz
         [HttpPost("[action]")]
         public async Task<IActionResult> AddBrand(Brand brand)
         {
@@ -35,6 +42,7 @@ namespace ETicaretApi.Controllers
 
         }
 
+        //Burada api ye put isteğinde bulunup markayı güncelliyoruz
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateBrand(Brand brand)
         {
@@ -50,6 +58,7 @@ namespace ETicaretApi.Controllers
 
         }
 
+        //Burada api ye delete isteğinde bulunup markayı siliyoruz
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteByID(int id)
         {

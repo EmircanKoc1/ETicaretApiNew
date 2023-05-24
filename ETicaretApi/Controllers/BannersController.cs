@@ -9,9 +9,14 @@ namespace ETicaretApi.Controllers
     [Route("[controller]")]
     public class BannersController : Controller
     {
+        //Controller yazıyoruz ve bu bizin ilgili istekleri yapacağımız api oluyor.
+        //Aşağıdaki gibi tanımlıyoruz.
+
+        //Burada veritabanına sorgu yapmak için bir context nesnesi oluşturuyoruz.
         ETicaretDbContext context = new();
 
 
+        //Burada api ye get isteğinde bulunup bannersi listeliyoruz.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBanners()
         {
@@ -20,6 +25,8 @@ namespace ETicaretApi.Controllers
 
         }
 
+
+        //Burada api ye post isteğinde bulunup banners ekliyoruz.
         [HttpPost("[action]")]
         public async Task<IActionResult> AddBanner(Banners banner)
         {
@@ -29,6 +36,7 @@ namespace ETicaretApi.Controllers
 
         }
 
+        //Burada api ye Put isteğinde bulunup bannersi güncelliyoruz.
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateBanner(Banners banner)
         {
@@ -39,6 +47,7 @@ namespace ETicaretApi.Controllers
 
         }
 
+        //Burada api ye delete isteğinde bulunup bannersi siliyoruz.
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteBanner(int id)
         {
