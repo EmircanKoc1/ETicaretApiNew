@@ -65,9 +65,5 @@ namespace ETicaretApi.Controllers
             return Ok();
         }
 
-
-
-
-
     }
 }
